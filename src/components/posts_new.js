@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {createPost } from '../actions'
+import { createPost } from '../actions'
 
 class PostsNew extends Component {
   renderField(field){
@@ -28,7 +28,9 @@ class PostsNew extends Component {
   }
 
   onSubmit(values){
-    this.props.createPost(values)
+    this.props.createPost(values, () => {
+      this.props.history.push('/')
+    })
   }
 
   // renderTitleField does not have () because the field will call the function at some point in the future
