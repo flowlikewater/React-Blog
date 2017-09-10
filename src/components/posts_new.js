@@ -20,11 +20,20 @@ class PostsNew extends Component {
     )
   }
 
+  onSubmit(values){
+    console.log(values)
+  }
+
   // renderTitleField does not have () because the field will call the function at some point in the future
   // ... we are not calling the renderTitleField ourselves
   render(){
+
+    const { handleSubmit } = this.props
+    // <form onSubmit={handleSubmit(this.onSubmit.bind(this))}> explained:
+    // first the reduxform will decide if everything is ok, without error...
+    // if ok, it then calls the onSubmit function and passes values out of the form to process
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label='Title For Post'
           name='title'
