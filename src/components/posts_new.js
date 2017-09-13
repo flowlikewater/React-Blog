@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 // reduxForm function helper is like the connect helper,
 // ... give redux form to communite directely with the reducer action
 import { Field, reduxForm } from 'redux-form'
+// Link is equivilant to routerLink
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createPost } from '../actions'
@@ -28,6 +29,8 @@ class PostsNew extends Component {
   }
 
   onSubmit(values){
+    // this.props.history.push('/')
+    // this.props.createPost(values)
     this.props.createPost(values, () => {
       this.props.history.push('/')
     })
@@ -83,6 +86,7 @@ function validate(values){
 }
 
 // form: xxx <--- must be unique
+// how to stack multiple connect like objects? reduxform({})(connect(null,{})(PostNew))
 export default reduxForm({
   validate,
   form: 'PostsNewForm'

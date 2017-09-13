@@ -12,6 +12,7 @@ import promise from 'redux-promise'
 import reducers from './reducers';
 import PostsIndex from './components/posts_index'
 import PostsNew from './components/posts_new'
+import PostsShow from './components/posts_show'
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -26,12 +27,14 @@ class Goodbye extends React.Component {
 // <Route path="/hello" component={Hello} /> means:
 // if the url goes to the path="", then display this component
 // SWITCH: Put the most specific route at the top
+// :id must come after new because :id is a wildcard component and will accidently match with /new
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
         <Switch>
           <Route path="/posts/new" component={PostsNew} />
+          <Route path="/posts/:id" component={PostsShow} />
           <Route path="/" component={PostsIndex} />
         </Switch>
       </div>
